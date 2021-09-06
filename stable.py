@@ -75,7 +75,7 @@ def buildAndTrainModel(x_train, x_test, denoising=False):
     convt1 = tf.keras.layers.Conv2DTranspose(128, 7, strides=7, activation="relu")(reshape_layer)
     convt2 = tf.keras.layers.Conv2DTranspose(64, 5, strides=2, padding="same", activation="relu")(convt1)
     convt3 = tf.keras.layers.Conv2DTranspose(32, 3, strides=2, padding="same", activation="relu")(convt2)
-    decoded = tf.keras.layers.Conv2DTranspose(1, 3, padding="same", activation="sigmoid")(convt3)
+    decoded = tf.keras.layers.Conv2DTranspose(channel_size, 3, padding="same", activation="sigmoid")(convt3)
 
     autoencoder = tf.keras.Model(input_layer, decoded, name="autoencoder")
     autoencoder.summary()
